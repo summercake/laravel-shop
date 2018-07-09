@@ -20,6 +20,7 @@
                     <li><a href="{{ route('login') }}">登录</a></li>
                     <li><a href="{{ route('register') }}">注册</a></li>
                 @else
+
                     <li>
                         <a href="{{ route('cart.index') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                     </li>
@@ -31,6 +32,12 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('user_addresses.index') }}">收货地址</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('orders.index') }}">我的订单</a>
+                            </li>
                             <li>
                                 <a href="{{ route('user_addresses.index') }}">收货地址</a>
                             </li>
