@@ -125,6 +125,11 @@ return [
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
+    /**
+     *  CloseOrder time
+     */
+    'order_ttl' => 1800,
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
