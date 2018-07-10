@@ -61,4 +61,26 @@ class CouponCode extends Model
 
         return $code;
     }
+
+    public function getAdjustedPrice($orderAmount)
+    {
+        // 固定金额
+        if ($this->type === self::TYPE_FIXED) {
+            // 为了保证系统健壮性，我们需要订单金额最少为 0.01 元
+            return max(0.01, $orderAmount - $this->value);
+        }
+
+        return number_format($orderAmount * (100 - $this->value) / 100, 2, '.', '');
+    }
+
+    public function changeUsed($increase = true)
+    {
+        // 传入 true 代表新增用量，否则是减少用量
+        if ($increase) {
+            // 与检查 SKU 库存类似，这里需要检查当前用量是否已经超过总量
+            return $this->newQuery()->where('id', $this->id)->where('used', '<', $this->total)->increment('used');
+        } else {
+            return $this->decrement('used');
+        }
+    }
 }
