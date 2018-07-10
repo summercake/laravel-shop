@@ -31,6 +31,7 @@ class CouponCode extends Model
     protected $casts = [
         'enabled' => 'boolean',
     ];
+
     // 指明这两个字段是日期类型
     protected $dates = ['not_before', 'not_after'];
 
